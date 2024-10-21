@@ -139,8 +139,7 @@ async function insertUser(email: string) {
 }
 
 // Example usage of the insertUser function
-insertUser('john.doe@5645.com')
-    .then(user => {
+insertUser('john.doe@5645.com').then(user => {
     if (user) {
         console.log('User inserted successfully:', user);
     } else {
