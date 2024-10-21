@@ -121,17 +121,17 @@ router.post('/', async (req, res) => {
 async function insertUser(email: string) {
     try {
         const { data, error } = await supabase
-            .from('users')  // 'users' is the name of the table
+            .from('users')
             .insert([
-            { email: email },  // Insert user with name and email
+            { email: email }, 
         ])
-        .select();  // Return the inserted rows
+        .select();
 
         if (error) {
             console.error('Error inserting user:', error.message);
             return null;
         }
-        return data;  // Return the inserted data
+        return data;
     } catch (err) {
         console.error('Unexpected error:', err);
         return null;

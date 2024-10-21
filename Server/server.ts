@@ -1,6 +1,6 @@
 import express from 'express';
-import signupRouter from './routes/signup'; // Importing the default export
-import loginRouter from './routes/login';   // Similar change for other routers
+import signupRouter from './routes/signup';
+import loginRouter from './routes/login';
 
 const app = express();
 app.use(express.json());
