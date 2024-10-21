@@ -118,4 +118,34 @@ router.post('/', async (req, res) => {
     }
 });
 
+async function insertUser(email: string) {
+    try {
+        const { data, error } = await supabase
+            .from('users')  // 'users' is the name of the table
+            .insert([
+            { email: email },  // Insert user with name and email
+        ])
+        .select();  // Return the inserted rows
+
+        if (error) {
+            console.error('Error inserting user:', error.message);
+            return null;
+        }
+        return data;  // Return the inserted data
+    } catch (err) {
+        console.error('Unexpected error:', err);
+        return null;
+    }
+}
+
+// Example usage of the insertUser function
+insertUser('john.doe@5645.com')
+    .then(user => {
+    if (user) {
+        console.log('User inserted successfully:', user);
+    } else {
+        console.log('User insertion failed.');
+    }
+});
+
 export default router;
