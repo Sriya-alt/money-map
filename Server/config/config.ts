@@ -7,7 +7,7 @@ WE NEED TO CREATE A CONFIG FILE TO STORE ALL THE DATABASE CONFIGURATIONS.
 */ 
 
 import { createClient } from '@supabase/supabase-js'
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
 // Load the .env file and make variables available in process.env
 dotenv.config();
