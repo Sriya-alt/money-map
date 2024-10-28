@@ -100,8 +100,13 @@ router.post('/', async (req, res) => {
     try{
         if(req.body.button === 'signup'){
             const email = req.body.email;
-          
+            const pswd = req.body.pswd;
+            const uname = req.body.username;
             
+            //
+            //database insert needed
+            //
+            insertUser(email, pswd, uname)
             const script = `
                 <script>
                     alert('Registered Successfully!');
@@ -118,7 +123,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-async function insertUser(email: string) {
+async function insertUser(email: string, pswd: string, uname: string) {
     try {
         const { data, error } = await supabase
             .from('users')
@@ -139,12 +144,12 @@ async function insertUser(email: string) {
 }
 
 // Example usage of the insertUser function
-insertUser('john.doe@5645.com').then(user => {
+/* insertUser('john.doe@5645.com').then(user => {
     if (user) {
         console.log('User inserted successfully:', user);
     } else {
         console.log('User insertion failed.');
     }
 });
-
+ */
 export default router;
