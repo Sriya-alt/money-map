@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './assets/logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home.tsx';
+import Budget from './pages/Budget.tsx';
+import Transactions from './pages/Transactions.tsx';
+import Account from './pages/Account.tsx';
+import Login from './auth/Login.tsx';
+import Signup from './auth/Signup.tsx';
+import Navbar from './components/Navbar.tsx';
+import './App.css'; 
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/budget" element={<Budget />} />
+          <Route path="/transactions" element={<Transactions />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+export default App; 
