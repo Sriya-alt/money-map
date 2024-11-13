@@ -99,13 +99,17 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     try{
         if(req.body.button === 'signup'){
+           // const uname = req.body.username;
+
+           //salt hashing needed...
+            const passwd = req.body.password;
             const email = req.body.email;
           
             
             const script = `
                 <script>
                     alert('Registered Successfully!');
-                    window.location.href = '/signup';
+                    window.location.href = '/login';
                 </script>
             `;
 
@@ -118,33 +122,33 @@ router.post('/', async (req, res) => {
     }
 });
 
-async function insertUser(email: string) {
-    try {
-        const { data, error } = await supabase
+async function insertUser(passwd: string, email: string){
+    try{
+        const {data, error} = await supabase
             .from('users')
             .insert([
-            { email: email }, 
+            {passwd: passwd, email: email}, 
         ])
         .select();
 
-        if (error) {
-            console.error('Error inserting user:', error.message);
+        if(error){
+            console.error('Error Inserting User:', error.message);
             return null;
         }
         return data;
-    } catch (err) {
+    }catch(err){
         console.error('Unexpected error:', err);
         return null;
     }
 }
 
 // Example usage of the insertUser function
-insertUser('john.doe@5645.com').then(user => {
+/* insertUser('john.doe@5645.com').then(user => {
     if (user) {
         console.log('User inserted successfully:', user);
     } else {
         console.log('User insertion failed.');
     }
 });
-
+ */
 export default router;
