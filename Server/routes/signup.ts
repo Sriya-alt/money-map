@@ -122,15 +122,9 @@ router.post('/', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
 async function insertUser(passwd: string, email: string){
-    try{
-        const {data, error} = await supabase
-=======
-async function insertUser(email: string, pswd: string, uname: string) {
     try {
         const { data, error } = await supabase
->>>>>>> 0628c05dcee761ac991867f17e55f4dfc91d5df0
             .from('users')
             .insert([
             {passwd: passwd, email: email}, 
