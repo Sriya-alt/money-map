@@ -1,13 +1,511 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.home-link {
+  margin-right: auto;
+  font-size: 1em;
+  color: #333;
+  text-decoration: none;
+}
+
+.login-signup-button {
+  font-size: 1em;
+  padding: 10px 20px;
+  background-color: #d3e8d3;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-signup-button:hover {
+  background-color: #b8d0b8;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #e8f5e8;
+}
+
+.hero-title {
+  font-size: 3em;
+  font-weight: bold;
+  color: #2f4f2f;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.get-started-button {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #b8d0b8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.get-started-button:hover {
+  background-color: #98b798;
+}
+
+/* Info Section */
+.info-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.info-intro {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.info-description {
+  font-size: 1em;
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* Features Section */
+.features-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  background-color: #d3e8d3;
+  color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card h2 {
+  font-size: 1.2em;
+  color: #2f4f2f;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+/* Container Styling for Pages */
+.page-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Heading Styling */
+h1, h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Button Styling */
+.button, .continue-button, .finish-button {
+  padding: 12px 24px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 20px;
+}
+
+.button:hover, .continue-button:hover, .finish-button:hover {
+  background-color: #0056b3;
+}
+
+.button:disabled, .continue-button:disabled, .finish-button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* Input Field Styling */
+input[type="email"], input[type="password"], input[type="text"] {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1em;
+  width: 100%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
+  border-color: #007bff;
+}
+
+/* List Styling for Options */
+.options-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.options-list li {
+  padding: 15px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.options-list li:hover {
+  background-color: #4caf50;
+}
+
+.options-list li.selected {
+  background-color: #4caf50;
+  font-weight: bold;
+} 
+
+/* Summary Page List Styling */
+.response-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.response-item {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  font-size: 1em;
+  text-align: left;
+}
+
+/* Progress Tracker Styling */
+.progress-tracker {
+  height: 6px;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Centered Content */
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+/* Onboarding, Login, Signup Page Styling */
+.onboarding-page, .login-page, .signup-page, .summary-page {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.get-started-button, .login-button, .signup-button {
+  padding: 12px 24px;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 15px 0;
+}
+
+.get-started-button:hover, .login-button:hover, .signup-button:hover {
+  background-color: #388e3c;
+}
+
+/* Dashboard Page Styling */
+.dashboard-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.ready-to-assign {
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+/* Bottom Navigation Bar Styling */
+.bottom-nav-bar {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.bottom-nav-bar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1em;
+  padding: 10px;
+}
+
+.bottom-nav-bar a:hover {
+  color: #4caf50;
+}
+
+.profile-header {
+  text-align: center;
+  background-color: #556b2f; /* Dark green */
+  color: #fff;
+  padding: 20px;
+}
+
+.profile-header h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.profile-header p {
+  margin: 5px 0;
+  font-size: 1em;
+}
+
+/* Edit Profile Section */
+.edit-profile {
+  text-align: center;
+  padding: 10px;
+  background-color: #f0f8e8; /* Light green background */
+  font-weight: bold;
+  color: #333;
+}
+
+.edit-profile h2 {
+  font-size: 1.2em;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Signup Form Styling */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f0f8e8; /* Light green background */
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.signup-form input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.signup-form input[type="date"] {
+  color: #555;
+}
+
+.signup-form input:focus {
+  border-color: #556b2f; /* Dark green border on focus */
+  outline: none;
+}
+
+/* Save Changes Button */
+.save-changes-button {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #a9a9a9; /* Light gray button color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-changes-button:hover {
+  background-color: #556b2f; /* Dark green on hover */
+}
+
+.save-changes-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.question-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.input-group {
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.expenditure-input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.currency-select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.continue-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.continue-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.budget-allocation-page {
+  padding: 20px;
+  text-align: center;
+}
+
+.allocation-item {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  font-size: 1.1em;
+  flex: 1;
+  text-align: left;
+}
+
+.allocation-input {
+  width: 100%;
+  max-width: 200px;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.total-allocation {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.save-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
