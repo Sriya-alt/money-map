@@ -104,7 +104,8 @@ router.post('/', async (req, res) => {
            //salt hashing needed...
             const passwd = req.body.password;
             const email = req.body.email;
-          
+            const pswd = req.body.pswd;
+            const uname = req.body.username;
             
             const script = `
                 <script>
