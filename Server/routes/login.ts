@@ -10,6 +10,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     try{
         if(req.body.button === 'login'){
+
+            const email = req.body.email;
+            const psswd = req.body.psswd;
+
+
             const script = `
                 <script>
                     alert('Login Successfull!');
