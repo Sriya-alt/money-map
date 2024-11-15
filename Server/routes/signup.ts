@@ -101,6 +101,10 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     try{
         if(req.body.button === 'signup'){
+           // const uname = req.body.username;
+
+           //salt hashing needed...
+            const passwd = req.body.password;
             const email = req.body.email;
             const psswd = req.body.psswd;
             
@@ -122,7 +126,7 @@ router.post('/', async (req, res) => {
             const script = `
                 <script>
                     alert('Registered Successfully!');
-                    window.location.href = '/signup';
+                    window.location.href = '/login';
                 </script>
             `;
 
@@ -135,12 +139,32 @@ router.post('/', async (req, res) => {
     }
 });
 
+
 //CHECK FUNCTION FOR HASHING
 //hashCheck("1234", "abc");
 /* 
 //TEST FUNCTION FOR INSERTING
 async function create(){
     const user = await insertUser("qweq1122e12@gmail.com", "email");
+
+async function insertUser(passwd: string, email: string){
+    try{
+        const {data, error} = await supabase
+            .from('users')
+            .insert([
+            {passwd: passwd, email: email}, 
+        ])
+        .select();
+
+        if(error){
+            console.error('Error Inserting User:', error.message);
+            return null;
+        }
+        return data;
+    }catch(err){
+        console.error('Unexpected error:', err);
+        return null;
+    }
 }
 create(); */
 //createUser();

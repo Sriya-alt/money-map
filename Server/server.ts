@@ -1,6 +1,7 @@
 import express from 'express';
 import signupRouter from './routes/signup';
 import loginRouter from './routes/login';
+import profileRouter from './routes/profile';
 
 const app = express();
 app.use(express.json());
@@ -55,6 +56,7 @@ app.get('/', (req, res) => {
 
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+app.use('/profile', profileRouter);
 
 app.listen(port, () => {
     console.log(`Server Started On Port ${port}`);
