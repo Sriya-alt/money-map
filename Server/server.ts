@@ -10,8 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 const port: number = process.env.PORT ? Number(process.env.PORT) : 8000;
 
 app.get('/', (req, res) => {
-    res.send(
-        `
+    res.send(`
         <style>
                 /* Dark theme styles */
                 body {
@@ -50,8 +49,7 @@ app.get('/', (req, res) => {
                     background-color: #0056b3; /* Darker shade on hover */
                 }
             </style>
-        `
-    );
+    `);
 });
 
 app.use('/login', loginRouter);
