@@ -24,3 +24,24 @@ export async function insertUser(email: string, psswd: string) {
         return null;
     }
 }
+
+//how to encode and decode the passwd so it can always be compared when needed for login.
+async function searchDB(email: string, passwd: string){
+    try{
+        const {data, error} = await supabase
+            .from('users')
+            .insert([
+            {password: passwd, email: email}, 
+        ])
+        .select();
+
+        if(error){
+            console.error('Credentials Incorrect: ', error.message);
+            return null;
+        }
+        return data;
+    }catch (err){
+        console.error('Unexpected error:', err);
+        return null;
+    }
+}
