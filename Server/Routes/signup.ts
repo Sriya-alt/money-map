@@ -98,13 +98,15 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
     try{
-        if(req.body.button === 'signup'){
+        if(req.body.button === 'save-changes-button'){
            // const uname = req.body.username;
+           const { name, email, password, phoneNumber, dateOfBirth } = req.body;
 
+           // Ensure all fields are provided
+           if (!name || !email || !password || !phoneNumber || !dateOfBirth) {
+               res.status(400).send('All fields are required!');
+           }
            //salt hashing needed...
-            const passwd = req.body.password;
-            const email = req.body.email;
-          
             
             const script = `
                 <script>

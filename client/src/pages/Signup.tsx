@@ -1,14 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the navigate hook
 
+async function checkInput(name: string, email: string, psswd: string, dob: string, phoneNum: string): Promise<boolean>{
+  const isFormComplete = name && email && psswd && dob && phoneNum;
+  if(isFormComplete){return true;}else{return false;}
+}
 const Signup: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [isFormComplete, setIsFormComplete] = useState(false);
 
   const navigate = useNavigate(); // Initialize the navigate hook
+  
+  useEffect(() => {
+    // Check if the form is complete every time any input changes
+    const checkFormCompletion = async () => {
+      const result = await checkInput(name, email, password, dateOfBirth, phoneNumber);
+      setIsFormComplete(result);
+    };
+
+    checkFormCompletion();
+  }, [name, email, password, dateOfBirth, phoneNumber]); 
 
   const handleSignup = () => {
     // Placeholder: Add your signup logic here
@@ -21,18 +36,12 @@ const Signup: React.FC = () => {
   return (
     <div className="signup-page">
       <div className="profile-header">
-        <h1>FIRST LAST</h1>
-        <p>usersemail@gmail.com</p>
-        <p>+353 89 999 9999</p>
+        <h1>Create Account</h1>
       </div>
 
-      <div className="edit-profile">
-        <h2>Edit Profile</h2>
-      </div>
-
-      <form className="signup-form" onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="text"
+      <form className="signup-form" method="POST" onSubmit={(e) => e.preventDefault()}>
+        <input 
+          type="text" 
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -60,9 +69,15 @@ const Signup: React.FC = () => {
           placeholder="Date of Birth"
           value={dateOfBirth}
           onChange={(e) => setDateOfBirth(e.target.value)}
+          required
         />
-        <button onClick={handleSignup} className="save-changes-button" type="button">
-          Save Changes
+        <button 
+          onClick={handleSignup}
+          className="save-changes-button"
+          type="button"
+          disabled={!isFormComplete}
+        >
+          Sign-Up
         </button>
       </form>
     </div>
