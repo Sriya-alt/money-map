@@ -1,6 +1,6 @@
 import express from 'express';
 import { testConnection } from './config/config';
-// import cors from 'cors';
+import cors from 'cors';
 
 
 const app = express();
