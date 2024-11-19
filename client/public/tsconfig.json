@@ -10,7 +10,8 @@
     "baseUrl": "./src",
     "paths": {
       "*": ["*"]
-    }
+    },
+    "types": ["node"] // Add this line to include Node.js type definitions
   },
   "include": [
     "src/**/*"

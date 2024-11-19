@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { signUp, registerUser } from '../api/auth.ts';
+import { Link, useNavigate } from 'react-router-dom';
+import { signUp} from '../api/auth.ts';
 import './auth.css';
 
 const Signup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await signUp(email, password);
-      await registerUser(email, password);
+      // await registerUser(email, password);
       alert('Sign up successful! Please check your email to confirm your account.');
+      navigate('/login'); // Redirect to login page after successful signup
     } catch (error: any) {
       setError(error.message);
     }

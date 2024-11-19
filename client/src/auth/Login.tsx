@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../api/auth.ts';
 import './auth.css';
 
@@ -7,13 +7,15 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate(); // Initialize useNavigate hook
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await login(email, password);
       alert('Login successful!');
-    } catch (error) {
+      navigate('/dashboard'); // Redirect to dashboard page after successful login
+    } catch (error: any) {
       setError(error.message);
     }
   };

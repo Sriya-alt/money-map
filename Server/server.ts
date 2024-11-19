@@ -1,10 +1,9 @@
 import express from 'express';
 import { testConnection } from './config/config';
 import cors from 'cors';
-
-
+import { registerUser } from './api/auth';
 const app = express();
-// app.use(cors())
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -14,10 +13,15 @@ app.get('/', (req, res) => {
     res.send('Hello, welcome to the backend!');
 });
 
-app.post('/register', (req, res) => {
+app.post('/signup', async (req, res) => {
     const { email, password } = req.body;
-    // Handle registration logic here
-    res.status(200).send({ message: 'User registered successfully' });
+    try {
+      const user = await registerUser(email, password);
+      console.log(`User registered with email: ${email}`);
+      res.status(200).send({ message: 'User registered successfully', user });
+    } catch (error: any) {
+      res.status(400).send({ message: error.message });
+    }
   });
 
 app.listen(port, async() => {

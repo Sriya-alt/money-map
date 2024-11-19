@@ -26,7 +26,7 @@ const testConnection = async () => {
     const {data, error} = await supabase
     .from('users')
     .select('*')
-    .limit(1);
+    // .limit();
   
 
   if (error) {
