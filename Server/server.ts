@@ -4,6 +4,7 @@ import loginRouter from './routes/login';
 //import profileRouter from './routes/profile';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -56,6 +57,18 @@ app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/profile', profileRouter);
 
-app.listen(port, () => {
+app.post('/signup', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const user = await registerUser(email, password);
+      console.log(`User registered with email: ${email}`);
+      res.status(200).send({ message: 'User registered successfully', user });
+    } catch (error: any) {
+      res.status(400).send({ message: error.message });
+    }
+  });
+
+app.listen(port, async() => {
     console.log(`Server Started On Port ${port}`);
+    await testConnection(); // This will test the connection to the database
 });

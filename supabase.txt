@@ -1,0 +1,40 @@
+Supabase provides a built-in authentication system that manages user accounts, 
+including sign-up, login, and password recovery. 
+This system is separate from your database tables and is designed to handle user authentication securely.
+
+Supabase Authentication vs. Database Tables
+Supabase Authentication:
+
+Purpose: Manages user accounts and authentication.
+Storage: User accounts are stored in a special authentication system managed by Supabase.
+Features: Includes sign-up, login, password recovery, email verification, and more.
+Access: You can access and manage users through the Supabase Dashboard under the "Authentication" section.
+Database Tables:
+
+Purpose: Stores application-specific data.
+Storage: Data is stored in tables within your Supabase database.
+Features: You define the schema, relationships, and constraints for your data.
+Access: You can access and manage data through SQL queries, Supabase client libraries, 
+or the Supabase Dashboard under the "Database" section.
+Why Users are Registered in Supabase Authentication
+When you use supabase.auth.signUp, 
+you are leveraging Supabase's built-in authentication system to create a new user account. 
+This account is stored in the authentication system, not in your custom database tables. 
+This separation ensures that user authentication is handled securely and efficiently.
+
+
+Storing Additional User Information
+If you need to store additional user information in your custom database tables, 
+you can do so by creating a new record in your users table after the user is registered with Supabase Authentication.
+
+Example: Registering a User and Storing Additional Information
+Register User with Supabase Authentication: Use supabase.auth.signUp to create a new user account.
+Store Additional Information in users Table: After successful registration, 
+create a new record in your users table with additional information.
+
+Explanation:
+Supabase Authentication: Handles user registration and authentication securely.
+Custom Database Table: Stores additional user information in your custom users table.
+Integration: Combines both systems to provide a complete user registration process.
+By following this approach, you can leverage Supabase's built-in authentication system 
+for secure user management while storing additional user information in your custom database tables.

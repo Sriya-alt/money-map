@@ -1,0 +1,59 @@
+/* FILE: src/pages/pages.css */
+
+/* General styles for all pages */
+.page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .page-header {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .page-content {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  
+  /* Specific styles for Home page */
+  .Home {
+    background-color: #f0f8ff;
+  }
+  
+  .Home .page-header {
+    color: #2c3e50;
+  }
+  
+  /* Specific styles for Budget page */
+  .Budget {
+    background-color: #f5f5f5;
+  }
+  
+  /* .Budget .page-header {
+    color: #27ae60;
+  } */
+  
+  .Budget .current-time {
+    font-size: 1.5em;
+    color: #27ae60;
+    margin-top: 10px;
+  }
+  
+  /* Specific styles for Transactions page */
+  .Transactions {
+    background-color: #fffaf0;
+  }
+  
+  .Transactions .page-header {
+    color: #c0392b;
+  }
+  
+  /* Specific styles for Account page */
+  .Account {
+    background-color: #f0fff0;
+  }
+  
+  .Account .page-header {
+    color: #2980b9;
+  }
