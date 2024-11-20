@@ -1,7 +1,7 @@
 import express from 'express';
 import signupRouter from './routes/signup';
 import loginRouter from './routes/login';
-import profileRouter from './routes/profile';
+//import profileRouter from './routes/profile';
 
 const app = express();
 app.use(express.json());
