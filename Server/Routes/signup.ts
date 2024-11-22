@@ -1,6 +1,7 @@
 import express from 'express';
 import { insertUser } from '../controllers/db';
 import { hashCheck, validate } from '../controllers/hashing';
+/* import {registerUser} from './api/auth'; */
 
 const router = express.Router();
 //const {users,...} = require('../db');
@@ -104,13 +105,11 @@ router.post('/', async (req, res) => {
            // const uname = req.body.username;
 
            //salt hashing needed...
-            const passwd = req.body.password;
-            const email = req.body.email;
-            const psswd = req.body.password;
+            const data = req.body;
             
-            
-            const user = await insertUser(email, psswd);
-            if (user) {
+            console.log(data);
+            //const user = await insertUser(email, psswd);
+            /* if (user) {
                 console.log('User Inserted Successfully:', user);
             } else {
                 const script = `
@@ -122,7 +121,7 @@ router.post('/', async (req, res) => {
 
                 console.log('User Insertion Failed.');
                 res.status(400).send(script);
-            }
+            } */
             const script = `
                 <script>
                     alert('Registered Successfully!');
