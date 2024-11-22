@@ -1,6 +1,6 @@
 // FILE: src/api/auth.ts
 // import {supabase} from '../supabaseClient.ts'; // Import for side effects only
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const signUp = async (email: string, password: string) => {
