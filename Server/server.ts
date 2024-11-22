@@ -3,6 +3,7 @@ import signupRouter from './routes/signup';
 import loginRouter from './routes/login';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import registerUser from './api/auth';
 //import profileRouter from './routes/profile';
 
 const app = express();
@@ -26,8 +27,7 @@ app.use('/signup', signupRouter);
     } catch (error: any) {
       res.status(400).send({ message: error.message });
     }
-  }); */
-
+});*/
 app.listen(port, async() => {
     console.log(`Server Started On Port ${port}`);
 });
