@@ -1,19 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home.tsx';
-import Budget from './pages/Budget.tsx';
-import Transactions from './pages/Transactions.tsx';
-import Account from './pages/Account.tsx';
-import Login from './auth/Login.tsx';
-import Signup from './auth/Signup.tsx';
-import Navbar from './components/Navbar.tsx';
+import Home from './pages/Home';
+import Budget from './pages/Budget';
+import Transactions from './pages/Transactions';
+import Account from './pages/Account';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+//import Navbar from './components/Navbar';
 import './App.css'; 
 
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/budget" element={<Budget />} />
