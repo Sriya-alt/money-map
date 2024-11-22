@@ -12,7 +12,8 @@ const Signup: React.FC = () => {
   const [dateOfBirth, setDateOfBirth] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isFormComplete, setIsFormComplete] = useState(false);
-
+  const [errorMessage, setErrorMessage] = useState('');
+  
   const navigate = useNavigate(); // Initialize the navigate hook
   
   useEffect(() => {
@@ -25,12 +26,32 @@ const Signup: React.FC = () => {
     checkFormCompletion();
   }, [name, email, password, dateOfBirth, phoneNumber]); 
 
-  const handleSignup = () => {
-    // Placeholder: Add your signup logic here
-    console.log({ name, email, password, dateOfBirth, phoneNumber });
+  const handleSignup = async () => {
+    try {
+        const response = await fetch('http://localhost:8000/signup', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            dob: dateOfBirth,
+            phoneNumber,
+          }),
+        });
 
-    // After saving the user information, navigate to the next page
-    navigate('/questions/debt'); // Redirect to the first questionnaire page
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Sign Up Success:', data);
+          navigate('/questions/debt'); // Redirect to the first questionnaire page
+        } else {
+          const error = await response.json();
+          setErrorMessage(error.error || 'Sign Up failed.'); // Display error message
+        }
+      } catch (error) {
+          console.error('Error during Sign Up:', error);
+          setErrorMessage('An unexpected error occurred. Please try again later.');
+      }
   };
 
   return (
@@ -42,7 +63,7 @@ const Signup: React.FC = () => {
       <form className="signup-form" method="POST" onSubmit={(e) => e.preventDefault()}>
         <input 
           type="text" 
-          placeholder="Name"
+          placeholder="Full Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -62,7 +83,13 @@ const Signup: React.FC = () => {
           type="text"
           placeholder="Phone Number"
           value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            // Allow only digits (0-9)
+            if (/^\d*$/.test(value)) {
+              setPhoneNumber(value);
+            }
+          }}
         />
         <input
           type="date"
@@ -75,10 +102,10 @@ const Signup: React.FC = () => {
           onClick={handleSignup}
           className="save-changes-button"
           type="button"
-          disabled={!isFormComplete}
         >
           Sign-Up
         </button>
+        {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       </form>
     </div>
   );
