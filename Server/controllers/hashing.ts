@@ -14,13 +14,11 @@ export async function hashPassword(password: string): Promise<string> {
     return hashedPassword;
 }
 
-export async function validate(email: string, psswd: string, storedHash: string): Promise<boolean> {
+export async function validate(psswd: string, storedHash: string): Promise<boolean>{
     // Check if the plain password matches the stored hash
-    const hashToCompare = createHash('sha256').update(email + saltRounds).digest('hex');
     const isValid = await compare(psswd, storedHash);
     return isValid;
 }
-
 export async function hashCheck(email: string, password: string) {
     // Hash the password and email
     const hashedPassword = await hashPassword(password);
