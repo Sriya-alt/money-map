@@ -49,3 +49,5 @@ export const registerUser = async (email: string, password: string) => {
 
   return await response.json();
 };
+
+export default registerUser;

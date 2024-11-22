@@ -1,19 +1,24 @@
 import express from 'express';
-import { testConnection } from './config/config';
+import signupRouter from './routes/signup';
+import loginRouter from './routes/login';
 import cors from 'cors';
-import { registerUser } from './api/auth';
+import dotenv from 'dotenv';
+import registerUser from './api/auth';
+//import profileRouter from './routes/profile';
+
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const port: number = process.env.PORT ? Number(process.env.PORT) : 8000;
+dotenv.config();
+const port = process.env.PORT;
 
-app.get('/', (req, res) => {
-    res.send('Hello, welcome to the backend!');
-});
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
+//app.use('/profile', profileRouter);
 
-app.post('/signup', async (req, res) => {
+/* app.post('/signup', async (req, res) => {
     const { email, password } = req.body;
     try {
       const user = await registerUser(email, password);
@@ -22,10 +27,7 @@ app.post('/signup', async (req, res) => {
     } catch (error: any) {
       res.status(400).send({ message: error.message });
     }
-  });
-
+});*/
 app.listen(port, async() => {
     console.log(`Server Started On Port ${port}`);
-    await testConnection(); // This will test the connection to the database
 });
-

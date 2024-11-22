@@ -5,15 +5,16 @@ THIS IS FOR DATABASE CONFIGURATION AND CONNECTION SUCH AS URL, PORT, DATABASE NA
 
 WE NEED TO CREATE A CONFIG FILE TO STORE ALL THE DATABASE CONFIGURATIONS.
 */ 
-
-
+/* SUPABASE_URL=https://ebarenbgefyzicoolpbg.supabase.co
+SUPABASE_API=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImViYXJlbmJnZWZ5emljb29scGJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkxOTgwNTMsImV4cCI6MjA0NDc3NDA1M30.77976gFHWn14kP8IV0A0aKEdCrMlhNNEp5nSbcbrZjw 
+ */
 import { createClient } from '@supabase/supabase-js'
-import  dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
-// Load the .env file
+// Load the .env file and make variables available in process.env
 dotenv.config();
 
-//Database Connection Vars.
+// Ensure the environment variables are defined
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_API || '';
 
@@ -21,27 +22,6 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing Supabase configuration. Please check your .env file.');
 }
 
-const testConnection = async () => {
-  try{
-    const {data, error} = await supabase
-    .from('users')
-    .select('*')
-    // .limit();
-  
-
-  if (error) {
-    throw error;
-  } 
-
-  console.log('Supabase connection successful', 'Retrive data:', data);
-  } catch (error) {
-  if (error instanceof Error) {
-    console.error('Supabase connection failed:', error.message);
-  } else {
-    console.error('Supabase connection failed:', error);
-  }
-  }
-};
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export {supabase, testConnection};
+export default supabase;
