@@ -1,9 +1,12 @@
 import express from 'express';
 import signupRouter from './routes/signup';
 import loginRouter from './routes/login';
+import dashboardRouter from './routes/dashboard';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import registerUser from './api/auth';
+import { verifyToken } from './api/auth';
+// import registerUser from './api/auth';
+
 //import profileRouter from './routes/profile';
 
 const app = express();
@@ -16,6 +19,11 @@ const port = process.env.PORT;
 
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+app.use('/dashboard', dashboardRouter);
+
+app.get('/protected', verifyToken, (req, res) => {
+  res.status(200).json({ message: 'This is a protected route' });
+});
 //app.use('/profile', profileRouter);
 
 /* app.post('/signup', async (req, res) => {

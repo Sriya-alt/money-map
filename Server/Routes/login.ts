@@ -2,6 +2,8 @@ import express from 'express';
 import supabase from "../config/config";
 import { validate } from '../controllers/hashing';
 import { searchUser } from '../controllers/db';
+import { generateToken } from '../api/auth';
+import { User } from '../api/auth';
 
 const router = express.Router();
 //const {users,...} = require('../db');
@@ -24,7 +26,9 @@ router.post('/', async (req, res) => {
 
         if(hashP){
             console.log('User Found successfully:', userData);
-            res.status(201).json({success: true, message: 'User Found Successfully.'});
+            const user = userData[0];
+            const token = generateToken({id: user.id, email: user.email});
+            res.status(201).json({success: true, message: 'User Found Successfully.', token});
             return;
         }else{
             res.status(500).json({success: false, error: 'Wrong Email or Password.' });
