@@ -1,16 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Layout from '../components/Layout';
 
 const Onboarding: React.FC = () => {
   const navigate = useNavigate();
 
   return (
+    <Layout>
     <div className="onboarding-page">
       <header className="navbar">
         <div className="logo">MoneyMap</div>
         <nav>
           <a href="#" className="home-link">Home</a>
-          <button className="login-signup-button" onClick={() => navigate('/login')}>
+          <button className="login-signup-button" onClick={() => navigate('./auth-selection')}>
             Log In / Sign Up
           </button>
         </nav>
@@ -19,7 +21,7 @@ const Onboarding: React.FC = () => {
       <main className="hero-section">
         <h1 className="hero-title">SAVE, BUDGET, GROW.</h1>
         <p className="hero-subtitle">Take control of your finances today.</p>
-        <button className="get-started-button" onClick={() => navigate('/auth-selection')}>
+        <button className="get-started-button" onClick={() => navigate('./auth-selection')}>
           GET STARTED
         </button>
       </main>
@@ -47,6 +49,7 @@ const Onboarding: React.FC = () => {
         </div>
       </section>
     </div>
+    </Layout>
   );
 };
 

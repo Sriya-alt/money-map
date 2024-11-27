@@ -1,51 +1,48 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuestionnaire } from '../context/QuestionnaireContext';
+import '../pages/BudgetAllocation.css';
+import Layout from '../components/Layout';
 
 const BudgetAllocation: React.FC = () => {
   const navigate = useNavigate();
-  const { responses } = useQuestionnaire();
-  
-  // Retrieve the monthly expenditure amount from the context
+  const { responses, setAllocation } = useQuestionnaire();
   const monthlyExpenditure = parseFloat(responses['MonthlyExpenditure']?.split(' ')[0] || '0');
-  const [allocations, setAllocations] = useState<{ [key: string]: number }>({});
+  const [allocations, setLocalAllocations] = useState<{ [key: string]: number }>({});
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Calculate the current total allocation
   const totalAllocation = Object.values(allocations).reduce((sum, value) => sum + value, 0);
 
-  // Function to handle input change for each category
   const handleAllocationChange = (category: string, value: number) => {
-    setAllocations((prevAllocations) => ({
-      ...prevAllocations,
+    setLocalAllocations((prev) => ({
+      ...prev,
       [category]: value,
     }));
   };
 
-  // Handle Save button
   const handleSave = () => {
     if (totalAllocation > monthlyExpenditure) {
       setErrorMessage('Total allocation exceeds monthly expenditure!');
       return;
     }
 
-    // Save the allocation (can add saving logic here if needed)
-    console.log('Allocations:', allocations);
+    // Save allocations to context
+    Object.entries(allocations).forEach(([category, amount]) => {
+      setAllocation(category, amount);
+    });
 
-    // Navigate to a summary or dashboard
-    navigate('/dashboard'); // Adjust the path as necessary
+    navigate('/dashboard');
   };
 
   return (
+    <Layout>
     <div className="budget-allocation-page">
       <h2>Allocate Your Monthly Expenditure</h2>
       <p>Monthly Expenditure: {monthlyExpenditure} {responses['MonthlyExpenditure']?.split(' ')[1]}</p>
 
       {Object.entries(responses).map(([question, answer]) => {
-        // Exclude MonthlyExpenditure and FinanceFeel from the allocation fields
         if (question === 'MonthlyExpenditure' || question === 'FinanceFeel') return null;
 
-        // Split each response (comma-separated) into individual items
         const items = answer.split(', ').map((item) => item.trim());
 
         return items.map((item) => (
@@ -76,6 +73,7 @@ const BudgetAllocation: React.FC = () => {
         Save
       </button>
     </div>
+    </Layout>
   );
 };
 
