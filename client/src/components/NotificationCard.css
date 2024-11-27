@@ -1,0 +1,51 @@
+.notification-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 250px;
+  background-color: #cef1c7;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notification-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notification-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #1e812d;
+  margin-bottom: 10px;
+}
+
+.notification-count {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+}
+
+.notification-view-more {
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #69af73;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.notification-view-more:hover {
+  background-color: #71b671;
+  transform: translateY(-2px);
+}
