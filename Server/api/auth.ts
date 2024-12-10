@@ -27,7 +27,7 @@ declare module 'express-serve-static-core' {
 }
 
 export const generateToken = (user: { id: string; email: string }): string => {
-  const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+  const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '0.5h' });
   console.log('Generated JWT Token:', token); // Log the generated token
   return token;
 };
