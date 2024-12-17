@@ -1,5 +1,5 @@
 import React from 'react';
-import './NotificationCard.css'; // Updated for styling
+import './NotificationCard.css';
 
 interface NotificationCardProps {
   count: number;

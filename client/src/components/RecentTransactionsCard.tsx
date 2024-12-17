@@ -35,5 +35,5 @@ const RecentTransactionsCard: React.FC<RecentTransactionsCardProps> = ({
 
 export default RecentTransactionsCard;
 
-// Optional: Add a dummy export if needed
+
 export {};

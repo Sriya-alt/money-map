@@ -1,13 +1,17 @@
 import React from 'react';
 import './Sidebar.css';
 import { useQuestionnaire } from '../context/QuestionnaireContext';
+import { NavLink } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
   const { responses } = useQuestionnaire();
   const { name, email, dateOfBirth } = responses;
 
   const initials = name
-    ? name.split(' ').map((n) => n[0].toUpperCase()).join('')
+    ? name
+        .split(' ')
+        .map((n) => n[0].toUpperCase())
+        .join('')
     : '';
 
   return (
@@ -23,27 +27,62 @@ const Sidebar: React.FC = () => {
       <nav className="sidebar-nav">
         <ul>
           <li>
-            <a href="/dashboard">Dashboard</a>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) => (isActive ? 'active-link' : '')}
+            >
+              Dashboard
+            </NavLink>
           </li>
           <li>
-            <a href="/my-account">My Account</a>
+            <NavLink
+              to="/account"
+              className={({ isActive }) => (isActive ? 'active-link' : '')}
+            >
+              My Account
+            </NavLink>
           </li>
           <li>
-            <a href="/my-spending">My Spending</a>
+            <NavLink
+              to="/my-spending"
+              className={({ isActive }) => (isActive ? 'active-link' : '')}
+            >
+              My Spending
+            </NavLink>
           </li>
           <li>
-            <a href="/budget">Budget</a>
+            <NavLink
+              to="/budget"
+              className={({ isActive }) => (isActive ? 'active-link' : '')}
+            >
+              Budget
+            </NavLink>
           </li>
           <li>
-            <a href="/saving-goals">Saving Goals</a>
+            <NavLink
+              to="/saving-goals"
+              className={({ isActive }) => (isActive ? 'active-link' : '')}
+            >
+              Saving Goals
+            </NavLink>
           </li>
           <li>
-            <a href="/notifications">Notifications</a>
+            <NavLink
+              to="/notifications"
+              className={({ isActive }) => (isActive ? 'active-link' : '')}
+            >
+              Notifications
+            </NavLink>
           </li>
         </ul>
       </nav>
       <div className="logout">
-        <a href="/logout">Logout</a>
+        <NavLink
+          to="/logout"
+          className={({ isActive }) => (isActive ? 'active-link' : '')}
+        >
+          Logout
+        </NavLink>
       </div>
     </div>
   );

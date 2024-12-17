@@ -16,13 +16,13 @@ interface NotificationProps {
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', {
-    weekday: 'short', // "Mon"
-    year: 'numeric', // "2024"
-    month: 'short',  // "Nov"
-    day: 'numeric',  // "19"
-    hour: 'numeric', // "12"
-    minute: 'numeric', // "30"
-    hour12: true, // 12-hour clock format (AM/PM)
+    weekday: 'short', 
+    year: 'numeric', 
+    month: 'short',  
+    day: 'numeric',  
+    hour: 'numeric', 
+    minute: 'numeric', 
+    hour12: true, 
   });
 };
 
@@ -38,8 +38,7 @@ const NotificationItem: React.FC<NotificationProps> = ({ notification, onMarkAsR
     if (event.target instanceof HTMLInputElement) {
       return;
     }
-    const path = `/notifications/${category.toLowerCase().replace(/\s+/g, '-')}/${id}`;
-    navigate(path);
+    navigate(`/Notification/${id}`);
   };
 
   return (
@@ -51,7 +50,7 @@ const NotificationItem: React.FC<NotificationProps> = ({ notification, onMarkAsR
         <span className="category-label">{category}</span>
         <h3>{title}</h3>
         <p className="date-time">{formatDate(notification.date)}</p>
-      </div>
+</div>
       <p className="description">{description}</p>
       <div className="mark-read-checkbox">
         <input

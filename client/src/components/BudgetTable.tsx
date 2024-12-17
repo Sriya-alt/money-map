@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuestionnaire } from '../context/QuestionnaireContext';
-import './BudgetTable.css'; // Import the CSS file
+import './BudgetTable.css'; 
 
 const BudgetTable: React.FC = () => {
   const { allocations, activity, setActivity } = useQuestionnaire();
@@ -18,7 +18,7 @@ const BudgetTable: React.FC = () => {
 
   return (
     <div className="budget-table-container">
-      <h3>Budget Allocation</h3>
+      
       <table className="budget-table">
         <thead>
           <tr>

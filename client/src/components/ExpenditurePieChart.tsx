@@ -2,7 +2,7 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
-// Register required Chart.js components
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface ExpenditurePieChartProps {
@@ -28,7 +28,7 @@ const ExpenditurePieChart: React.FC<ExpenditurePieChartProps> = ({ data }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top' as const, // Specify valid position type
+        position: 'top' as const,
       },
       tooltip: {
         callbacks: {
