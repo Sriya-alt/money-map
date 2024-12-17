@@ -1,35 +1,35 @@
 .auth-selection-page {
     text-align: center;
     padding: 2rem;
-    color: #002855; /* Text color */
+    color: #002855; 
   }
   
   .auth-selection-title {
     font-size: 2.5rem;
-    margin-bottom: 1.5rem; /* More space below the title */
+    margin-bottom: 1.5rem; 
     font-weight: bold;
   }
   
   .auth-selection-description {
     font-size: 1.2rem;
-    margin-bottom: 2rem; /* Space below the description text */
-    line-height: 1.5; /* Increased line height for better readability */
+    margin-bottom: 2rem; 
+    line-height: 1.5; 
   }
   
   .auth-selection-buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 2rem; /* Moves the buttons further down */
+    margin-top: 2rem; 
   }
   
   .auth-selection-buttons button {
-    padding: 0.7rem 1.5rem; /* Increased padding for larger buttons */
+    padding: 0.7rem 1.5rem; 
     border: none;
     border-radius: 5px;
     background: linear-gradient(135deg, #4caf50, #357ae8);
     color: white;
-    font-size: 1.1rem; /* Slightly larger font size for buttons */
+    font-size: 1.1rem; 
     cursor: pointer;
     transition: opacity 0.3s ease;
   }

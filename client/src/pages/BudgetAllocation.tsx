@@ -26,7 +26,7 @@ const BudgetAllocation: React.FC = () => {
       return;
     }
 
-    // Save allocations to context
+    
     Object.entries(allocations).forEach(([category, amount]) => {
       setAllocation(category, amount);
     });

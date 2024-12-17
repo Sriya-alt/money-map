@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import { useQuestionnaire } from '../context/QuestionnaireContext';
+import './SummaryPage.css';
 
 const SummaryPage: React.FC = () => {
   const { responses } = useQuestionnaire();
@@ -14,17 +15,19 @@ const SummaryPage: React.FC = () => {
   return (
     <Layout>
       <div className="summary-page">
-        <h2>Your Answers</h2>
-        <ul className="response-list">
-          {Object.entries(responses).map(([question, answer]) => (
-            <li key={question} className="response-item">
-              <strong>{question}:</strong> {answer || 'N/A'}
-            </li>
-          ))}
-        </ul>
-        <button onClick={handleFinish} className="finish-button">
-          Finish
-        </button>
+        <div className="summary-container">
+          <h2 className="summary-header">Your Answers</h2>
+          <ul className="summary-list">
+            {Object.entries(responses).map(([question, answer]) => (
+              <li key={question} className="summary-item">
+                <span>{question}:</span> {answer || 'N/A'}
+              </li>
+            ))}
+          </ul>
+          <button onClick={handleFinish} className="finish-button">
+            Finish
+          </button>
+        </div>
       </div>
     </Layout>
   );

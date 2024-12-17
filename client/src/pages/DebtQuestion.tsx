@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import ProgressTracker from '../components/ProgressTracker';
 import { useQuestionnaire } from '../context/QuestionnaireContext';
+import "./DebtQuestion.css";
 
 const DebtQuestion: React.FC = () => {
   const navigate = useNavigate();

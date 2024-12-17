@@ -13,7 +13,7 @@ interface Notification {
   read: boolean;
 }
 
-// Example notifications data
+
 const allNotifications = [
   { id: 1, title: 'You’ve exceeded your food budget', description: 'You’ve spent $50 on dining out this week, which is 20% over your budget.', category: 'Spending Alerts', date: '2024-11-19T12:30:00', read: false },
   { id: 2, title: 'Entertainment Budget Exceeded', description: 'You’ve reached 80% of your entertainment budget for the month.', category: 'Budget Reminders', date: '2024-11-19T10:15:00', read: false },
@@ -23,7 +23,7 @@ const allNotifications = [
 ];
 
 const NotificationPage: React.FC = () => {
-  const navigate = useNavigate(); // Used to navigate between pages
+  const navigate = useNavigate(); 
   const [selectedCategory, setSelectedCategory] = useState<string>('All Notifications');
   const [notifications, setNotifications] = useState<Notification[]>(allNotifications);
   const [readFilter, setReadFilter] = useState<string>('All');
@@ -69,7 +69,7 @@ const NotificationPage: React.FC = () => {
         selectedCategory={selectedCategory} 
         isCollapsed={isSidebarCollapsed} 
         toggleSidebar={() => setIsSidebarCollapsed(!isSidebarCollapsed)} 
-        getUnreadCountForCategory={getUnreadCountForCategory} // Pass the unread count function
+        getUnreadCountForCategory={getUnreadCountForCategory} 
       />
 
       <div className="filter-dropdown">
@@ -99,7 +99,7 @@ const NotificationPage: React.FC = () => {
         )}
       </div>
 
-      {/* Return to Dashboard Button */}
+      {}
       <div className="return-dashboard">
         <button className="return-dashboard-btn" onClick={() => navigate('/dashboard')}>
           Return to Dashboard

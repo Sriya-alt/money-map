@@ -7,7 +7,7 @@
   padding: 20px;
 }
 
-/* Login Box */
+
 .login-box {
   background-color: #ffffff;
   border-radius: 15px;
@@ -17,14 +17,14 @@
   text-align: center;
 }
 
-/* Logo */
+
 .login-logo {
   width: 120px;
   height: auto;
   margin-bottom: 20px;
 }
 
-/* Title and Subtitle */
+
 .login-title {
   font-size: 24px;
   font-weight: bold;
@@ -38,14 +38,14 @@
   margin-bottom: 20px;
 }
 
-/* Login Heading */
+
 .login-heading {
   font-size: 20px;
   color: #4caf50;
   margin-bottom: 20px;
 }
 
-/* Input Fields */
+
 .login-input {
   width: 100%;
   padding: 12px;
@@ -56,7 +56,7 @@
   box-sizing: border-box;
 }
 
-/* Login Button */
+
 .login-button {
   width: 100%;
   padding: 12px;
@@ -73,7 +73,7 @@
   background-color: #45a049;
 }
 
-/* Footer */
+
 .login-footer {
   margin-top: 15px;
   font-size: 14px;
@@ -89,7 +89,7 @@
   text-decoration: underline;
 }
 
-/* Form Group */
+
 .form-group {
   text-align: left;
   margin-bottom: 15px;

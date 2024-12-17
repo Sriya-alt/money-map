@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-// need to replace with actual notifs, just random examples
+
 const allNotifications = [
   { id: 1, title: 'You’ve exceeded your food budget', description: 'You’ve spent $50 on dining out this week, which is 20% over your budget.', category: 'Spending Alerts', date: '12:30 19-11-2024', read: false },
   { id: 2, title: 'Entertainment Budget Exceeded', description: 'You’ve reached 80% of your entertainment budget for the month.', category: 'Budget Reminders', date: '10:15 19-11-2024 ', read: false },

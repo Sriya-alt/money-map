@@ -1,23 +1,23 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  margin-left: 250px; /* Sidebar width adjustment */
+  margin-left: 250px; 
   padding: 20px;
   background-color: #f9f9f9;
   min-height: 100vh;
-  gap: 20px; /* Add consistent spacing */
+  gap: 20px; 
 }
 
-/* Top Section */
+
 .top-section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+  grid-template-columns: 1fr 1fr 1fr; 
   gap: 20px;
 }
 
-/* Dashboard Header Section */
+
 .balance-title-section {
-  grid-column: span 3; /* Full width in the top section */
+  grid-column: span 3; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,6 +25,8 @@
   background-color: #eaf5e8;
   border-radius: 10px;
   margin-bottom: 20px;
+
+  
 }
 
 .dashboard-header {
@@ -44,24 +46,31 @@
   font-size: 1.8rem;
   font-weight: bold;
   color: #333;
+  
 }
 
 .balance-section {
   text-align: right;
+  height: 50px;
+  
 }
 
 .balance-section h2 {
-  font-size: 1.8rem;
+  font-size: 2rem; 
   font-weight: bold;
-  color: #ffffff;
+  color: #ffffff; 
+  margin: 0; 
 }
 
 .balance-section p {
-  font-size: 1.2rem;
-  color: #666;
+  font-size: 1.5rem; 
+  color: #ffffff; 
+  margin: 0.5px 0 0; 
+  font-weight: bold;
+  
 }
 
-/* Calendar Section */
+
 .calendar-section,
 .recent-transactions-section,
 .notification-section {
@@ -83,14 +92,14 @@
   background-color: transparent;
 }
 
-/* Bottom Section */
+
 .bottom-section {
   display: grid;
-  grid-template-columns: 2fr 3fr; /* Larger pie chart, smaller budget table */
+  grid-template-columns: 2fr 3fr; 
   gap: 20px;
 }
 
-/* Pie Chart Section */
+
 .pie-chart-section {
   padding: 20px;
   background-color: #fff;
@@ -102,7 +111,7 @@
   margin-bottom: 20px;
 }
 
-/* Budget Table Section */
+
 .budget-table-section {
   padding: 20px;
   background-color: #fff;
@@ -114,13 +123,13 @@
   margin-bottom: 20px;
 }
 
-/* General Adjustments */
+
 h1, h2, h3 {
   color: #333;
   margin: 0;
 }
 
-/* Responsive Design */
+
 @media (max-width: 1024px) {
   .dashboard-container {
     margin-left: 0;
@@ -129,7 +138,7 @@ h1, h2, h3 {
 
   .top-section,
   .bottom-section {
-    grid-template-columns: 1fr; /* Stack elements in one column */
+    grid-template-columns: 1fr; 
     gap: 10px;
   }
 
@@ -147,7 +156,7 @@ h1, h2, h3 {
 .notification-section {
   flex: 1;
   padding: 20px;
-  background-color: #eaf5e8; /* Matches other card designs */
+  background-color: #eaf5e8; 
   border-radius: 10px;
   min-width: 250px;
 }
@@ -155,7 +164,7 @@ h1, h2, h3 {
 .notification-section h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #333; /* Consistent text color */
+  color: #333; 
 }
 
 .notification-card {
@@ -208,4 +217,27 @@ h1, h2, h3 {
 .notification-view-more:hover {
   background-color: #2b4a30;
   transform: translateY(-2px);
+}
+.help-button {
+  background-color: #3498db;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; 
+}
+
+.help-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.help-button:active {
+  background-color: #1c6ca1;
 }
