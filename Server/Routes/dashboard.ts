@@ -13,9 +13,11 @@ router.get('/', verifyToken, async (req: Request, res: Response) => {
 
   try {
     const { data, error } = await supabase
-      .from('dashboard')
-      .select('account_no, balance, notifications')
-      .eq('user_id', userID);
+      .from('users')
+      .select('account_no, name, dob')
+      .eq('id', userID)
+      .single();
+
 
     if (error) {
       console.error('Error fetching dashboard data:', error);

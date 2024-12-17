@@ -69,6 +69,10 @@ const Dashboard: React.FC = () => {
     // Add logic for navigating to transactions page if required
   };
 
+  const handleNavigateToSupport = () => {
+    navigate("/support");
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -124,6 +128,10 @@ const Dashboard: React.FC = () => {
           <BudgetTable />
         </div>
       </div>
+      {}
+      <button className="help-button" onClick={handleNavigateToSupport}>
+        Help
+      </button>
     </div>
   );
 };

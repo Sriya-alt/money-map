@@ -20,59 +20,85 @@ const BudgetAllocation: React.FC = () => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (totalAllocation > monthlyExpenditure) {
-      setErrorMessage('Total allocation exceeds monthly expenditure!');
+      const proceed = window.confirm('Total allocation exceeds monthly expenditure! Please reduce the amounts in order to proceed.');
+      if (!proceed) {
+        setErrorMessage('Total allocation exceeds monthly expenditure! Please reduce the amounts.');
+        return;
+      }
+    }
+
+    const token = localStorage.getItem('token'); // Retrieve the token from local storage
+    if (!token) {
+      setErrorMessage('No token found. Please log in again.');
       return;
     }
 
-    
-    Object.entries(allocations).forEach(([category, amount]) => {
-      setAllocation(category, amount);
-    });
+    try {
+      const response = await fetch('http://localhost:8000/budget', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ allocations }),
+      });
 
-    navigate('/dashboard');
+      if (response.ok) {
+        Object.entries(allocations).forEach(([category, amount]) => {
+          setAllocation(category, amount);
+        });
+
+        navigate('/dashboard'); // Redirect to the dashboard page
+      } else {
+        const error = await response.json();
+        setErrorMessage(error.error || 'Failed to save budget allocation.');
+      }
+    } catch (error) {
+      console.error('Error saving budget allocation:', error);
+      setErrorMessage('An unexpected error occurred. Please try again later.');
+    }
   };
 
   return (
     <Layout>
-    <div className="budget-allocation-page">
-      <h2>Allocate Your Monthly Expenditure</h2>
-      <p>Monthly Expenditure: {monthlyExpenditure} {responses['MonthlyExpenditure']?.split(' ')[1]}</p>
+      <div className="budget-allocation-page">
+        <h2>Allocate Your Monthly Expenditure</h2>
+        <p>Monthly Expenditure: {monthlyExpenditure} {responses['MonthlyExpenditure']?.split(' ')[1]}</p>
 
-      {Object.entries(responses).map(([question, answer]) => {
-        if (question === 'MonthlyExpenditure' || question === 'FinanceFeel') return null;
+        {Object.entries(responses).map(([question, answer]) => {
+          if (question === 'MonthlyExpenditure' || question === 'FinanceFeel') return null;
 
-        const items = answer.split(', ').map((item) => item.trim());
+          const items = answer.split(', ').map((item) => item.trim());
 
-        return items.map((item) => (
-          <div key={item} className="allocation-item">
-            <label>{item}</label>
-            <input
-              type="number"
-              placeholder="Enter amount"
-              value={allocations[item] || ''}
-              onChange={(e) => handleAllocationChange(item, parseFloat(e.target.value) || 0)}
-              className="allocation-input"
-            />
-          </div>
-        ));
-      })}
+          return items.map((item) => (
+            <div key={item} className="allocation-item">
+              <label>{item}</label>
+              <input
+                type="number"
+                placeholder="Enter amount"
+                value={allocations[item] || ''}
+                onChange={(e) => handleAllocationChange(item, parseInt(e.target.value) || 0)}
+                className="allocation-input"
+              />
+            </div>
+          ));
+        })}
 
-      <div className="total-allocation">
-        <strong>Total Allocation:</strong> {totalAllocation} {responses['MonthlyExpenditure']?.split(' ')[1]}
+        <div className="total-allocation">
+          <strong>Total Allocation:</strong> {totalAllocation} {responses['MonthlyExpenditure']?.split(' ')[1]}
+        </div>
+
+        <button
+          className="save-button"
+          onClick={handleSave}
+        >
+          Save
+        </button>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <button
-        className="save-button"
-        onClick={handleSave}
-        disabled={totalAllocation > monthlyExpenditure}
-      >
-        Save
-      </button>
-    </div>
     </Layout>
   );
 };

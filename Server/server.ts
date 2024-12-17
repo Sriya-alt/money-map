@@ -2,6 +2,7 @@ import express from 'express';
 import signupRouter from './routes/signup';
 import loginRouter from './routes/login';
 import dashboardRouter from './routes/dashboard';
+import budgetRouter from './routes/budget';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { verifyToken } from './api/auth';
@@ -19,7 +20,8 @@ const port = process.env.PORT;
 
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
-app.use('/dashboard', dashboardRouter);
+app.use('/dashboard', verifyToken, dashboardRouter); // Protect the dashboard route
+app.use('/budget', verifyToken, budgetRouter); // Protect the budget route
 
 app.get('/protected', verifyToken, (req, res) => {
   res.status(200).json({ message: 'This is a protected route' });

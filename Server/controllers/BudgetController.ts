@@ -1,6 +1,6 @@
 import { Transaction } from "./types";
 import supabase from "../config/config";
-import { UserUpdates } from "./types";
+// import { UserUpdates } from "./types";
 import { Budget } from "./types";
 
 async function createBudget(budget: Budget){
@@ -121,6 +121,21 @@ async function retrieveBudget(userId : string){
     }
 }
 
+async function editBudget(UserId: string, Budget: Budget){
+    try {
+        const {data, error} = await supabase.from('budget').update(Budget).eq('id', UserId);
+        if(error){
+            console.error(error);
+            return null;
+        } else {
+            console.log("Budget Updated ", data);
+            return data;
+        }
+    } catch (err){
+        console.error(err);
+    }
+}
+
 
 
 
@@ -128,5 +143,6 @@ export const BudgetController = {
     createBudget,
     retrieveBudget,
     retrieveTransaction,
-    appendTransaction
+    appendTransaction,
+    editBudget
 }

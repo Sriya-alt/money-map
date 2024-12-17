@@ -11,18 +11,15 @@ async function checkInput(
   dob: string,
   phoneNum: string
 ): Promise<boolean> {
-  
   const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
   const isValidEmail = emailRegex.test(email);
 
-  
   const today = new Date();
   const birthDate = new Date(dob);
   const age = today.getFullYear() - birthDate.getFullYear();
   const isOver18 =
     age > 18 || (age === 18 && today >= new Date(birthDate.setFullYear(today.getFullYear())));
 
-  
   const passwordsMatch = password === confirmPassword;
 
   return !!(
@@ -44,6 +41,7 @@ const Signup: React.FC = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isFormComplete, setIsFormComplete] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -65,7 +63,6 @@ const Signup: React.FC = () => {
   }, [name, email, password, confirmPassword, dateOfBirth, phoneNumber]);
 
   const handleSignup = async () => {
-    
     const isValid = await checkInput(
       name,
       email,
@@ -80,15 +77,32 @@ const Signup: React.FC = () => {
       return;
     }
 
-    console.log({
-      name,
-      email,
-      password,
-      confirmPassword,
-      dateOfBirth,
-      phoneNumber,
-    });
-    navigate("/questions/debt");
+    try {
+      const response = await fetch('http://localhost:8000/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          dob: dateOfBirth,
+          phoneNumber,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Sign Up Success:', data);
+        localStorage.setItem('token', data.token); // Store the token in local storage
+        navigate('/questions/debt'); // Redirect to the first questionnaire page
+      } else {
+        const error = await response.json();
+        setErrorMessage(error.error || 'Sign Up failed.'); // Display error message
+      }
+    } catch (error) {
+      console.error('Error during Sign Up:', error);
+      setErrorMessage('An unexpected error occurred. Please try again later.');
+    }
   };
 
   return (
@@ -138,7 +152,13 @@ const Signup: React.FC = () => {
                 type="text"
                 placeholder="Enter your phone number"
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Allow only digits (0-9)
+                  if(/^\d*$/.test(value)){
+                    setPhoneNumber(value);
+                  }
+                }}
               />
             </label>
             <label>
@@ -160,6 +180,7 @@ const Signup: React.FC = () => {
               />
             </label>
             {error && <p className="error-message">{error}</p>}
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <button
               onClick={handleSignup}
               className="signup-button"

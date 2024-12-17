@@ -1,12 +1,11 @@
 import express from 'express';
 import { insertUser } from '../controllers/db';
-/* import {registerUser} from './api/auth'; */
+import { generateToken } from '../api/auth';
 
 const router = express.Router();
-//const {users,...} = require('../db');
 
 router.post('/', async (req, res) => {
-    const { name, email, password, phoneNumber, dob} = req.body;
+    const { name, email, password, phoneNumber, dob } = req.body;
 
     try {
         // Validate required fields
@@ -19,7 +18,9 @@ router.post('/', async (req, res) => {
         const user = await insertUser(name, email, password, phoneNumber, dob);
 
         if (user) {
-            res.status(201).json({ success: true, message: 'User registered successfully.' });
+            const userDetail = user[0];
+            const token = generateToken({ id: userDetail.id, email: userDetail.email });
+            res.status(201).json({ success: true, message: 'User registered successfully.' , token});
             return;
         } else {
             res.status(500).json({ success: false, error: 'Failed to register user.' });
@@ -32,6 +33,7 @@ router.post('/', async (req, res) => {
     }
 });
 
+export default router;
 //CHECK FUNCTION FOR HASHING
 //hashCheck("1234", "abc");
 /* 
@@ -112,4 +114,3 @@ async function login(email: string, password: string, storedHashedPassword: stri
   }
 }
 */
-export default router;

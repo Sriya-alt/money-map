@@ -11,4 +11,5 @@ export const getToken = () => {
 // Function to remove the token from local storage (logout)
 export const logout = () => {
   localStorage.removeItem('token');
+  document.cookie = 'token=; Max-Age=0; path=/;'; // Delete the JWT token cookie
 };
