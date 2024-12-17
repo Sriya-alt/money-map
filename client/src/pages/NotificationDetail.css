@@ -1,0 +1,52 @@
+.notification-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: auto;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+  }
+  
+  .notification-detail h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .notification-detail p {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .notification-detail .category {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #1e812d;
+    margin-bottom: 10px;
+  }
+  
+  .notification-detail .notification-id {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #1e812d;
+    margin-bottom: 10px;
+  }
+  
+  .notification-detail .description {
+    font-size: 1rem;
+    color: #666;
+    margin: 10px 0;
+  }
+  
+  .notification-detail .date {
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 10px;
+  }

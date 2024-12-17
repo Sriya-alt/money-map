@@ -16,6 +16,7 @@ import ExpenditureQuestion from './pages/ExpenditureQuestion';
 import BudgetAllocation from './pages/BudgetAllocation';
 import SummaryPage from './pages/SummaryPage';
 import NotificationPage from './pages/NotificationPage';
+import NotificationDetail from './pages/NotificationDetail';
 import { QuestionnaireProvider } from './context/QuestionnaireContext';
 import './App.css';
 
@@ -40,6 +41,7 @@ const App: React.FC = () => {
             <Route path="/questions/expenditures" element={<ExpenditureQuestion />} />
             <Route path="/questions/budget-allocations" element={<BudgetAllocation />} />
             <Route path="/notifications" element={<NotificationPage />} />
+            <Route path="/notifications/:category/:id" element={<NotificationDetail />} />
             <Route path="/summary" element={<SummaryPage />} />
             <Route path="*" element={<Home />} />
           </Routes>

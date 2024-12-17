@@ -38,7 +38,8 @@ const NotificationItem: React.FC<NotificationProps> = ({ notification, onMarkAsR
     if (event.target instanceof HTMLInputElement) {
       return;
     }
-    navigate(`/Notification/${id}`);
+    const path = `/notifications/${category.toLowerCase().replace(/\s+/g, '-')}/${id}`;
+    navigate(path);
   };
 
   return (
@@ -50,7 +51,7 @@ const NotificationItem: React.FC<NotificationProps> = ({ notification, onMarkAsR
         <span className="category-label">{category}</span>
         <h3>{title}</h3>
         <p className="date-time">{formatDate(notification.date)}</p>
-</div>
+      </div>
       <p className="description">{description}</p>
       <div className="mark-read-checkbox">
         <input
