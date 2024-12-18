@@ -13,7 +13,7 @@ cache:
 before_script:
   # Install dependencies for client and server
   - cd client && npm install && cd ..
-  - cd server && npm install && cd ..
+  - cd Server && npm install && cd ..
 
 install:
   stage: install
