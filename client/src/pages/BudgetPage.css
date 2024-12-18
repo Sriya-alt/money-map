@@ -1,0 +1,93 @@
+.budget-allocation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .budget-allocation-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+  
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .budget-table th {
+    background-color: #2ecc71;
+    color: #ffffff;
+    font-size: 1.8rem;
+    padding: 20px;
+  }
+  
+  .budget-table td {
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    background-color: #f9f9f9;
+  }
+  
+  .input-box {
+    width: 90%;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.3rem;
+  }
+  
+  .input-box:focus {
+    border-color: #2ecc71;
+    outline: none;
+    box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
+  }
+  
+  .date-box {
+    width: 90%;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.3rem;
+  }
+  
+  .date-box:focus {
+    border-color: #2ecc71;
+    outline: none;
+    box-shadow: 0 0 6px rgba(46, 204, 113, 0.5);
+  }
+  
+  .urgency-select {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.3rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    text-align-last: center;
+  }
+  
+  .urgency-select option {
+    font-size: 1.2rem;
+  }
+  
+  .save-button {
+    width: 90%;
+    padding: 15px;
+    background-color: #2ecc71;
+    color: #ffffff;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .save-button:hover {
+    background-color: #27ae60;
+  }

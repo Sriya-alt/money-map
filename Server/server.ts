@@ -1,11 +1,43 @@
 import express from 'express';
+import signupRouter from './routes/signup';
+import loginRouter from './routes/login';
+import dashboardRouter from './routes/dashboard';
+import budgetRouter from './routes/budget';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { verifyToken } from './api/auth';
+// import registerUser from './api/auth';
+
+//import profileRouter from './routes/profile';
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const port: number = process.env.PORT ? Number(process.env.PORT) : 8000;
+dotenv.config();
+const port = process.env.PORT;
 
-app.listen(port, () => {
+app.use('/login', loginRouter);
+app.use('/signup', signupRouter);
+app.use('/dashboard', verifyToken, dashboardRouter); // Protect the dashboard route
+app.use('/budget', verifyToken, budgetRouter); // Protect the budget route
+
+app.get('/protected', verifyToken, (req, res) => {
+  res.status(200).json({ message: 'This is a protected route' });
+});
+//app.use('/profile', profileRouter);
+
+/* app.post('/signup', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const user = await registerUser(email, password);
+      console.log(`User registered with email: ${email}`);
+      res.status(200).send({ message: 'User registered successfully', user });
+    } catch (error: any) {
+      res.status(400).send({ message: error.message });
+    }
+});*/
+app.listen(port, async() => {
     console.log(`Server Started On Port ${port}`);
 });

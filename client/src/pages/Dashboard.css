@@ -1,0 +1,243 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 250px; 
+  padding: 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  gap: 20px; 
+}
+
+
+.top-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  gap: 20px;
+}
+
+
+.balance-title-section {
+  grid-column: span 3; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #eaf5e8;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+  
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.dashboard-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  
+}
+
+.balance-section {
+  text-align: right;
+  height: 50px;
+  
+}
+
+.balance-section h2 {
+  font-size: 2rem; 
+  font-weight: bold;
+  color: #ffffff; 
+  margin: 0; 
+}
+
+.balance-section p {
+  font-size: 1.5rem; 
+  color: #ffffff; 
+  margin: 0.5px 0 0; 
+  font-weight: bold;
+  
+}
+
+
+.calendar-section,
+.recent-transactions-section,
+.notification-section {
+  padding: 20px;
+  background-color: #eaf5e8;
+  border-radius: 10px;
+}
+
+.calendar-section h3,
+.recent-transactions-section h3,
+.notification-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.react-calendar {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+}
+
+
+.bottom-section {
+  display: grid;
+  grid-template-columns: 2fr 3fr; 
+  gap: 20px;
+}
+
+
+.pie-chart-section {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.pie-chart-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+
+.budget-table-section {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.budget-table-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+
+h1, h2, h3 {
+  color: #333;
+  margin: 0;
+}
+
+
+@media (max-width: 1024px) {
+  .dashboard-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .top-section,
+  .bottom-section {
+    grid-template-columns: 1fr; 
+    gap: 10px;
+  }
+
+  .balance-title-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dashboard-header {
+    justify-content: center;
+  }
+}
+
+
+.notification-section {
+  flex: 1;
+  padding: 20px;
+  background-color: #eaf5e8; 
+  border-radius: 10px;
+  min-width: 250px;
+}
+
+.notification-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333; 
+}
+
+.notification-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 250px;
+  background-color: #eaf5e8;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.notification-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.notification-title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #355e3b;
+  margin-bottom: 10px;
+}
+
+.notification-count {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #355e3b;
+  margin: 0;
+}
+
+.notification-view-more {
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #355e3b;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.notification-view-more:hover {
+  background-color: #2b4a30;
+  transform: translateY(-2px);
+}
+.help-button {
+  background-color: #3498db;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; 
+}
+
+.help-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.help-button:active {
+  background-color: #1c6ca1;
+}

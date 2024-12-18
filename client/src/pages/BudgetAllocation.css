@@ -1,0 +1,77 @@
+.budget-allocation-page {
+  max-width: 600px; 
+  margin: 0 auto; 
+  padding: 20px;
+  background: #eafaf1;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.budget-allocation-page h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #2d6a4f;
+  margin-bottom: 1rem;
+}
+
+.budget-allocation-page p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #495057;
+  margin-bottom: 2rem;
+}
+
+.allocation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px; 
+}
+
+.allocation-item label {
+  font-size: 1rem;
+  color: #495057;
+  margin-right: 10px;
+  flex: 1; 
+  text-align: left; 
+}
+
+.allocation-input {
+  flex: 1; 
+  max-width: 200px; 
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+.total-allocation {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2d6a4f;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.save-button {
+  display: block;
+  margin: 1.5rem auto 0;
+  padding: 0.8rem 1.5rem;
+  background-color: #808583;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #1ca76d;
+}

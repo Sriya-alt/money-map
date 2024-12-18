@@ -1,0 +1,69 @@
+.summary-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #e0f7e9, #d1f0e0);
+  }
+  
+  
+  .summary-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px; 
+    width: 100%;
+    text-align: center; 
+  }
+  
+  
+  .summary-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2d6a4f;
+    margin-bottom: 1.5rem;
+  }
+  
+  
+  .summary-list {
+    list-style: none; 
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    text-align: left; 
+  }
+  
+  
+  .summary-item {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background-color: #e0f7e9;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #495057;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  
+  .summary-item span {
+    font-weight: bold;
+    color: #2d6a4f;
+  }
+  
+  
+  .finish-button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .finish-button:hover {
+    background-color: #0056b3;
+  }
+  
