@@ -11,8 +11,7 @@ cache:
     - server/node_modules/
 
 before_script:
-  - cd client && npm install && cd ..
-  - cd server && npm install && cd ..
+  - npm install
 
 install:
   stage: install
