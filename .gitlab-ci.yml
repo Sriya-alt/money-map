@@ -12,7 +12,7 @@ cache:
 before_script:
   # Ensure npm dependencies are installed for both client and server
   - cd client && npm install && cd ..
-  - if [ -d "Server" ]; then cd Server && npm install && cd ..; fi
+  - if [ -d "server" ]; then cd server && npm install && cd ..; fi
 
 install:
   stage: install
