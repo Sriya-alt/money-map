@@ -1,4 +1,4 @@
-image: node:14
+image: ubuntu:20.04
 
 stages:
   - install
@@ -11,7 +11,17 @@ cache:
     - server/node_modules/
 
 before_script:
-  - npm install
+  # Install Node.js and npm
+  - apt-get update
+  - apt-get install -y curl
+  - curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+  - apt-get install -y nodejs
+  - node -v
+  - npm -v
+
+  # Install dependencies for client and server
+  - cd client && npm install && cd ..
+  - cd server && npm install && cd ..
 
 install:
   stage: install
