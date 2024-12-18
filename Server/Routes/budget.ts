@@ -20,7 +20,7 @@ router.post('/', verifyToken, async (req: Request, res: Response) => {
 
   try {
     console.log('Creating budget for user:', budget);
-    const result = await BudgetController.createBudget(userID, budget.totalAllocation);
+    const result = await BudgetController.createBudget(userID, budget.allocations, budget.totalAllocation);
 
     if (!result.success) {
       res.status(500).json({ error: result.error });

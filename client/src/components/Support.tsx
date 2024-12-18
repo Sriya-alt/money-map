@@ -14,12 +14,6 @@ const SupportPage: React.FC = () => {
     <Layout>
       <div className="support-page">
         {}
-        <nav className="navbar">
-          <a href="/">Home</a>
-          <a href="/support">Support</a>
-        </nav>
-
-        {}
         <header className="header">
           <h1>Support Page</h1>
           <p>We're here to help! Let us know how we can assist you.</p>

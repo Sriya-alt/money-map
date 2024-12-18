@@ -15,7 +15,8 @@ export interface Transaction {
 
 export interface Budget {
     id: string;
-    budget: Record<string, any>;
-    transactions: Record<string, any>;
-    address: Record<string, any>;
+    budget_allocation: number;
+    total_budget: Record<string, number>;
+    transactions: Record<string, number>;
+    address: Record<string, string>;
 }

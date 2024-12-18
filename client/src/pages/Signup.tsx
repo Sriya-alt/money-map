@@ -17,8 +17,7 @@ async function checkInput(
   const today = new Date();
   const birthDate = new Date(dob);
   const age = today.getFullYear() - birthDate.getFullYear();
-  const isOver18 =
-    age > 18 || (age === 18 && today >= new Date(birthDate.setFullYear(today.getFullYear())));
+  const isOver18 = (age > 18 && age < 150) || (age === 18 && today >= new Date(birthDate.setFullYear(today.getFullYear())));
 
   const passwordsMatch = password === confirmPassword;
 

@@ -1,13 +1,14 @@
 import { Transaction, Budget } from "./types";
 import supabase from "../config/config";
 
-async function createBudget(userID: string, totalAllocation: number) {
+async function createBudget(userID: string, allocations: string, totalAllocation: number) {
     try {
         const { data, error } = await supabase.from('budget')
             .insert([
                 {
                     id: userID,
-                    budget: totalAllocation,
+                    budget_allocation: allocations,
+                    total_budget: totalAllocation,
                     transactions: [],
                     address: ''
                 }

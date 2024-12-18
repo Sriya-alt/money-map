@@ -16,14 +16,11 @@ const Onboarding: React.FC = () => {
         <header className="navbar">
           <div className="logo">MoneyMap</div>
           <nav>
-            <a href="#" className="home-link">
-              Home
-            </a>
             <button
               className="login-signup-button"
-              onClick={() => navigate("./auth-selection")}
+              onClick={() => navigate("./login")}
             >
-              Log In / Sign Up
+              Log In
             </button>
           </nav>
         </header>
