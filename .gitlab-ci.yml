@@ -1,4 +1,4 @@
-image: node:14
+image: node:22
 
 stages:
   - install
@@ -12,12 +12,14 @@ cache:
 
 before_script:
   - echo "Installing dependencies..."
-  - cd client && npm install && cd ..
-  - if [ -d "server" ]; then cd server && npm install && cd ..; fi
+  - cd client && npm ci && cd ..
+  - if [ -d "server" ]; then cd server && npm ci && cd ..; fi
 
 install:
   stage: install
   script:
+    - echo "Installing all dependencies..."
+    - npm run install:all
     - echo "Dependencies installed successfully."
 
 build:
