@@ -1,12 +1,20 @@
 {
-    "compilerOptions": {
-      "target": "ES6",
-      "module": "commonjs",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": ["**/*.ts"],
-    "exclude": ["node_modules"]
-  }
+  "compilerOptions": {
+    "target": "ES6", // Compiles to ES6-compatible JavaScript.
+    "module": "commonjs", // CommonJS module system for Node.js.
+    "strict": true, // Enables strict type-checking options.
+    "esModuleInterop": true, // Enables compatibility with ES module imports.
+    "skipLibCheck": true, // Skips type checking of declaration files.
+    "forceConsistentCasingInFileNames": true, // Enforces consistent file name casing.
+    "moduleResolution": "node", // Resolves modules using Node.js conventions.
+    "resolveJsonModule": true, // Allows importing JSON files.
+    "outDir": "./dist", // Output directory for compiled files.
+    "rootDir": "./src", // Root directory for TypeScript source files.
+    "sourceMap": true, // Generates source map files for debugging.
+    "declaration": true, // Generates .d.ts files for TypeScript declarations.
+    "allowSyntheticDefaultImports": true, // Allows default imports from modules with no default export.
+    "strictPropertyInitialization": true // Enforces initialization of class properties.
+  },
+  "include": ["src/**/*.ts"], // Includes TypeScript files in the `src` folder.
+  "exclude": ["node_modules", "dist"] // Excludes unnecessary folders.
+}
