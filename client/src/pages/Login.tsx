@@ -30,8 +30,10 @@ const Login: React.FC = () => {
       return;
     }
 
+    const apiUrl = process.env.REACT_APP_API__BASE_URL || 'http://localhost:8000';
+
     try {
-      const response = await fetch('http://localhost:8000/login', {
+      const response = await fetch(`${apiUrl}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

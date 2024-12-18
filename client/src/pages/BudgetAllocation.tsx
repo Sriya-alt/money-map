@@ -35,8 +35,10 @@ const BudgetAllocation: React.FC = () => {
       return;
     }
 
+    const apiUrl = process.env.REACT_APP_API__BASE_URL || 'http://localhost:8000';
+
     try {
-      const response = await fetch('http://localhost:8000/budget', {
+      const response = await fetch(`${apiUrl}/budget`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

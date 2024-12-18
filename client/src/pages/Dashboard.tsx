@@ -10,6 +10,7 @@ import NotificationCard from '../components/NotificationCard';
 import RecentTransactionsCard from '../components/RecentTransactionsCard';
 import { getToken } from '../api/auth';
 import './Dashboard.css';
+import { url } from 'inspector';
 
 const Dashboard: React.FC = () => {
   const { responses, allocations, getRemainingBalance } = useQuestionnaire();
@@ -33,9 +34,10 @@ const Dashboard: React.FC = () => {
         setLoading(false);
         return;
       }
-
+      const apiUrl = process.env.REACT_APP_API__BASE_URL || 'http://localhost:8000';
+      
       try {
-        const response = await fetch('http://localhost:8000/dashboard', {
+        const response = await fetch(`${apiUrl}/dashboard`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

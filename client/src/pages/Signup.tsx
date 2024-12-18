@@ -75,9 +75,10 @@ const Signup: React.FC = () => {
       setError("Please ensure all fields are correctly filled.");
       return;
     }
+    const apiUrl = process.env.REACT_APP_API__BASE_URL || 'http://localhost:8000';
 
     try {
-      const response = await fetch('http://localhost:8000/signup', {
+      const response = await fetch(`${apiUrl}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
