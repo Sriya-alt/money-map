@@ -1,26 +1,29 @@
 import express, { Request, Response } from 'express';
 import { verifyToken } from '../api/auth';
-import supabase from "../config/config";
 import { BudgetController } from '../controllers/BudgetController';
 
 const router = express.Router();
 
 router.post('/', verifyToken, async (req: Request, res: Response) => {
-  const totalAllcation = req.body.totalAllcation;
-  
+  const userID = req.userID;
+  const budget = req.body;
 
-  if (!totalAllcation) {
+  if (!userID) {
     res.status(400).json({ error: 'User ID not found in request' });
     return;
   }
 
-  try {
-    const { data, error } = await supabase
-      BudgetController.createBudget();
+  if (!budget) {
+    res.status(400).json({ error: 'Total allocation not provided' });
+    return;
+  }
 
-    if (error) {
-      console.error('Error saving budget allocation:', error.message);
-      res.status(500).json({ error: 'Failed to save budget allocation' });
+  try {
+    console.log('Creating budget for user:', budget);
+    const result = await BudgetController.createBudget(userID, budget.totalAllocation);
+
+    if (!result.success) {
+      res.status(500).json({ error: result.error });
       return;
     }
 

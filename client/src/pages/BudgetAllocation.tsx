@@ -42,7 +42,7 @@ const BudgetAllocation: React.FC = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ allocations }),
+        body: JSON.stringify({ totalAllocation }),
       });
 
       if (response.ok) {

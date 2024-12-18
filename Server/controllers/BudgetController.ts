@@ -1,28 +1,28 @@
-import { Transaction } from "./types";
+import { Transaction, Budget } from "./types";
 import supabase from "../config/config";
-// import { UserUpdates } from "./types";
-import { Budget } from "./types";
 
-async function createBudget(budget: Budget){
+async function createBudget(userID: string, totalAllocation: number) {
     try {
-        const {data, error} = await supabase.from('budget')
-        .insert([
-            {
-                id: budget.id, 
-                budget: budget.budget,
-                transactions: budget.transactions,
-                address: budget.address
-            }
-        ]);
-        if(error){
+        const { data, error } = await supabase.from('budget')
+            .insert([
+                {
+                    id: userID,
+                    budget: totalAllocation,
+                    transactions: [],
+                    address: ''
+                }
+            ]);
+
+        if (error) {
             console.error('Error creating budget:', error);
-            return null;
+            return { success: false, error: error.message };
         } else {
             console.log('Budget created successfully', data);
-            return data;
+            return { success: true, data };
         }
-    } catch (error){
-        console.log(error);
+    } catch (error) {
+        console.error('Error creating budget:', error);
+        return { success: false, error: 'Server error' };
     }
 }
 
@@ -34,7 +34,7 @@ async function retrieveTransaction(
         const { data, error } = await supabase
             .from('budget')
             .select('transactions')
-            .eq('id', userId)
+            .eq('user_id', userId)
             .single();
 
         if (error) {
@@ -65,14 +65,12 @@ async function retrieveTransaction(
     }
 }
 
-
 async function appendTransaction(userId: string, newTransaction: Transaction) {
     try {
-
         const { data: existingData, error: retrieveError } = await supabase
             .from('budget')
             .select('transactions')
-            .eq('id', userId)
+            .eq('user_id', userId)
             .single();
 
         if (retrieveError) {
@@ -91,7 +89,7 @@ async function appendTransaction(userId: string, newTransaction: Transaction) {
         const { error: updateError } = await supabase
             .from('budget')
             .update({ transactions: updatedTransactions })
-            .eq('id', userId);
+            .eq('user_id', userId);
 
         if (updateError) {
             console.error('Error updating transactions:', updateError);
@@ -105,39 +103,36 @@ async function appendTransaction(userId: string, newTransaction: Transaction) {
     }
 }
 
-
-
-async function retrieveBudget(userId : string){
+async function retrieveBudget(userId: string) {
     try {
-        const {data, error} = await supabase.from('budget').select().eq('id', userId);
-        if(error){
-            console.error(error);
+        const { data, error } = await supabase.from('budget').select().eq('user_id', userId);
+        if (error) {
+            console.error('Error retrieving budget:', error);
             return null;
         } else {
             return data;
         }
-    } catch (err){
-        console.error(err);
+    } catch (err) {
+        console.error('Error retrieving budget:', err);
+        return null;
     }
 }
 
-async function editBudget(UserId: string, Budget: Budget){
+async function editBudget(userId: string, budget: Budget) {
     try {
-        const {data, error} = await supabase.from('budget').update(Budget).eq('id', UserId);
-        if(error){
-            console.error(error);
+        const { data, error } = await supabase.from('budget').update(budget).eq('user_id', userId);
+        if (error) {
+            console.error('Error updating budget:', error);
             return null;
         } else {
             console.log("Budget Updated ", data);
             return data;
         }
-    } catch (err){
-        console.error(err);
+    } catch (err) {
+        console.error('Error updating budget:', err);
+        return null;
     }
 }
-
-
-
 
 export const BudgetController = {
     createBudget,
@@ -145,4 +140,4 @@ export const BudgetController = {
     retrieveTransaction,
     appendTransaction,
     editBudget
-}
+};
