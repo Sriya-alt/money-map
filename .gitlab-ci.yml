@@ -3,22 +3,21 @@ image: node:14
 stages:
   - install
   - build
-  - deploy
 
 cache:
   paths:
     - client/node_modules/
-    - server/node_modules/
+    - Server/node_modules/
 
 before_script:
-  # Install dependencies for client and server
+  # Ensure npm dependencies are installed for both client and server
   - cd client && npm install && cd ..
-  - cd Server && npm install && cd ..
+  - if [ -d "Server" ]; then cd Server && npm install && cd ..; fi
 
 install:
   stage: install
   script:
-    - echo "Dependencies installed during before_script"
+    - echo "Dependencies installed."
 
 build:
   stage: build
@@ -27,13 +26,3 @@ build:
   artifacts:
     paths:
       - client/build
-
-pages:
-  stage: deploy
-  script:
-    - mv client/build public
-  artifacts:
-    paths:
-      - public
-  only:
-    - main
