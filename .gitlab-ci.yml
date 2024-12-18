@@ -5,24 +5,28 @@ stages:
   - build
 
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - client/node_modules/
-    - Server/node_modules/
+    - server/node_modules/
 
 before_script:
   # Ensure npm dependencies are installed for both client and server
+  - echo "Installing dependencies..."
   - cd client && npm install && cd ..
   - if [ -d "server" ]; then cd server && npm install && cd ..; fi
 
 install:
   stage: install
   script:
-    - echo "Dependencies installed."
+    - echo "Dependencies installed successfully."
 
 build:
   stage: build
   script:
+    - echo "Building the project..."
     - npm run build:all
   artifacts:
     paths:
       - client/build
+    expire_in: 1 week
